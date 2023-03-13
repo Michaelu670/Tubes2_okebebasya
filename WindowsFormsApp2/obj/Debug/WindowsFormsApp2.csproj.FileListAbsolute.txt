@@ -1,0 +1,11 @@
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.AssemblyReference.cache
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.SuggestedBindingRedirects.cache
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Form1.resources
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+C:\Users\Asus\Documents\ITB\SEMESTER IV\STIMA\TUBES II\GUI\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
