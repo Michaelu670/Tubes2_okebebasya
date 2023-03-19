@@ -1,4 +1,8 @@
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApp2
 {
@@ -7,7 +11,7 @@ namespace WindowsFormsApp2
     {
         public T1 first { get; set; }
         public T2 second { get; set; }
-        
+
         public Pair(T1 a, T2 b)
         {
             first = a;
