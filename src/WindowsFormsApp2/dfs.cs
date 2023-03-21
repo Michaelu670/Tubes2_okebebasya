@@ -12,35 +12,22 @@ namespace WindowsFormsApp2
 {
     internal class DFS
     {
-        private static List<Pair<string,Pair<int, int>>> moveDirection = 
-            new List<Pair<string, Pair<int, int>>>()
-        {
-            new Pair<string, Pair<int, int>>("L", new Pair<int, int>(0, -1)),
-            new Pair<string, Pair<int, int>>("R", new Pair<int, int>(0, 1)),
-            new Pair<string, Pair<int, int>>("U", new Pair<int, int>(-1, 0)),
-            new Pair<string, Pair<int, int>>("D", new Pair<int, int>(1, 0))
-        };
-
-        private static Dictionary<string, string> reverseDirection = new Dictionary<string, string>()
-        {
-            {"L", "R"},
-            {"R", "L"},
-            {"U", "D"},
-            {"D", "U"},
-            {"", ""}
-        };
-
         private int sizeX, sizeY;
+        private char[,] petaAwal;
         private char[,] peta;
         private Pair<int, int> startCoordinate;
         private List<Pair<int, int>> treasuresCoordinate;
         private bool[,] visited;
         private Pair<int, int>[,] pred;
 
+        private int found;
+        private bool currentSearchFound;
+        private string directPath;
+
         public DFS(InputUtils inputUtils)
         {
-            this.peta = (char[,]) inputUtils.matrix.Clone();
-            this.startCoordinate = inputUtils.startCoordinate;
+            this.petaAwal = (char[,]) inputUtils.matrix.Clone();
+            this.startCoordinate = inputUtils.startCoordinate.Clone();
             this.treasuresCoordinate = new List<Pair<int, int>>(inputUtils.treasureCoordinate);
 
             this.sizeX = inputUtils.matrix.GetLength(0);
@@ -51,30 +38,72 @@ namespace WindowsFormsApp2
         }
         private void traverse(Pair<int, int> pos, ref string path, string prevDirection = "")
         {
+            if (currentSearchFound) { return; }
             if (outside(pos)) { return; }
             if (this.visited[pos.first, pos.second]) { return; }
+            if (peta[pos.first, pos.second] == 'X') { return; }
             this.visited[pos.first, pos.second] = true;
+
+            if (peta[pos.first, pos.second] == 'T')
+            {
+                found++;
+                currentSearchFound = true;
+                peta[pos.first, pos.second] = 'R';
+
+                startCoordinate = pos;
+                return;
+            }
 
             path += prevDirection;
 
-            foreach (var direction in moveDirection)
+            foreach (var direction in TraverseRule.moveDirection)
             {
-                traverse(pos + direction.second, ref path, direction.first);
+                traverse(pos + direction.Value, ref path, direction.Key);
+                if (currentSearchFound)
+                {
+                    directPath += direction.Key;
+                    break;
+                }
             }
 
-            path += reverseDirection[prevDirection];
+            path += TraverseRule.reverseDirection[prevDirection];
         }
-        public string solve()
+        public (string, string) Solve()
         {
+            HardReset();
+            string searchPath = "";
             string path = "";
-            traverse(startCoordinate, ref path);
             
-            return path;
+            for (int i = 0; i < treasuresCoordinate.Count; i++)
+            {
+                SoftReset();
+                traverse(startCoordinate, ref searchPath);
+                char[] charArr = directPath.ToCharArray();
+                Array.Reverse(charArr);
+                MessageBox.Show(new string(charArr));
+                path += new string(charArr);
+            }
+            
+            return (searchPath, path);
         }
-
-        public void test()
+        private void HardReset()
         {
-            MessageBox.Show(peta.ToString());
+            peta = (char[,])petaAwal.Clone();
+            found = 0;
+        }
+        private void SoftReset()
+        {
+            directPath = "";
+            currentSearchFound = false;
+            for (int i = 0; i < pred.GetLength(0); i++)
+            {
+                for (int j = 0; j < pred.GetLength(1); j++)
+                {
+                    pred[i, j] = new Pair<int, int>(0, 0);
+
+                    visited[i, j] = false;
+                }
+            }
         }
 
         private bool outside(Pair<int, int> pos)

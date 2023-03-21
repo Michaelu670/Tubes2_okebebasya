@@ -22,6 +22,10 @@ namespace WindowsFormsApp2
         {
             return "(" + first.ToString() + "," + second.ToString() + ")";
         }
+        public Pair<T1, T2> Clone()
+        {
+            return new Pair<T1, T2>(first, second);
+        }
 
         public static Pair<T1, T2> operator + (Pair<T1, T2> a, Pair<T1, T2> b)
         {

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.LinkLabel;
+using System.Threading;
 
 namespace WindowsFormsApp2
 {
@@ -101,6 +102,18 @@ namespace WindowsFormsApp2
             }
         }
 
+        private void Visualize(string searchPath, string directPath = "")
+        {
+            Pair<int, int> position = inputUtils.startCoordinate;
+            dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = Color.Green;
+            
+            foreach (char c in directPath)
+            {
+                position = position + TraverseRule.moveDirection[c.ToString()];
+                dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = Color.Green;
+            }
+        }
+
         private void search_button_Click(object sender, EventArgs e)
         {
             try
@@ -109,7 +122,8 @@ namespace WindowsFormsApp2
                 if (dfsButton.Checked)
                 {
                     DFS dfs = new DFS(inputUtils);
-                    MessageBox.Show(dfs.solve());
+                    var result = dfs.Solve();
+                    Visualize(result.Item1, result.Item2);
                 }
                 else if (bfsButton.Checked)
                 {
