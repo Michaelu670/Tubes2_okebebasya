@@ -14,6 +14,7 @@ namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
+        private InputUtils inputUtils;
         public Form1()
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace WindowsFormsApp2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            inputUtils = null;
         }
 
 
@@ -46,7 +47,7 @@ namespace WindowsFormsApp2
                 string filePath = openFileDialog1.FileName;
                 try
                 {
-                    InputUtils inputUtils = new InputUtils(filePath);
+                    inputUtils = new InputUtils(filePath);
 
                     // Memecah setiap baris menjadi nilai-nilai individu dan menambahkannya ke DataTable
                     DataTable dt = new DataTable();
@@ -91,13 +92,39 @@ namespace WindowsFormsApp2
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    inputUtils = null;
                 }
-                
 
 
-                
+
+
             }
         }
 
+        private void search_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (inputUtils == null) throw new Exception("No file selected");
+                if (dfsButton.Checked)
+                {
+                    DFS dfs = new DFS(inputUtils);
+                    MessageBox.Show(dfs.solve());
+                }
+                else if (bfsButton.Checked)
+                {
+
+                }
+                else
+                {
+                    throw new Exception("No button checked");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
     }
 }

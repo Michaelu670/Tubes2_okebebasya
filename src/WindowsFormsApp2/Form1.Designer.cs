@@ -28,312 +28,314 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.title_label = new System.Windows.Forms.Label();
-            this.input_label = new System.Windows.Forms.Label();
-            this.output_label = new System.Windows.Forms.Label();
-            this.filename_label = new System.Windows.Forms.Label();
-            this.algoritma_label = new System.Windows.Forms.Label();
-            this.visualize_button = new System.Windows.Forms.Button();
-            this.search_button = new System.Windows.Forms.Button();
-            this.routes_label = new System.Windows.Forms.Label();
-            this.nodes_label = new System.Windows.Forms.Label();
-            this.steps_label = new System.Windows.Forms.Label();
-            this.execution_time_label = new System.Windows.Forms.Label();
-            this.routes_ans_label = new System.Windows.Forms.Label();
-            this.nodes_ans_label = new System.Windows.Forms.Label();
-            this.steps_ans_label = new System.Windows.Forms.Label();
-            this.execution_time_ans_label = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txt_label = new System.Windows.Forms.Label();
-            this.bfsButton = new System.Windows.Forms.RadioButton();
-            this.dfsButton = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.SuspendLayout();
+            title_label = new System.Windows.Forms.Label();
+            input_label = new System.Windows.Forms.Label();
+            output_label = new System.Windows.Forms.Label();
+            filename_label = new System.Windows.Forms.Label();
+            algoritma_label = new System.Windows.Forms.Label();
+            visualize_button = new System.Windows.Forms.Button();
+            search_button = new System.Windows.Forms.Button();
+            routes_label = new System.Windows.Forms.Label();
+            nodes_label = new System.Windows.Forms.Label();
+            steps_label = new System.Windows.Forms.Label();
+            execution_time_label = new System.Windows.Forms.Label();
+            routes_ans_label = new System.Windows.Forms.Label();
+            nodes_ans_label = new System.Windows.Forms.Label();
+            steps_ans_label = new System.Windows.Forms.Label();
+            execution_time_ans_label = new System.Windows.Forms.Label();
+            pictureBox2 = new System.Windows.Forms.PictureBox();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            dataGridView1 = new System.Windows.Forms.DataGridView();
+            txt_label = new System.Windows.Forms.Label();
+            bfsButton = new System.Windows.Forms.RadioButton();
+            dfsButton = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
             // title_label
             // 
-            this.title_label.AutoSize = true;
-            this.title_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_label.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.title_label.Location = new System.Drawing.Point(169, 33);
-            this.title_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.title_label.Name = "title_label";
-            this.title_label.Size = new System.Drawing.Size(481, 55);
-            this.title_label.TabIndex = 0;
-            this.title_label.Text = "Treasure Hunt Solver";
+            title_label.AutoSize = true;
+            title_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            title_label.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            title_label.Location = new System.Drawing.Point(197, 38);
+            title_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            title_label.Name = "title_label";
+            title_label.Size = new System.Drawing.Size(481, 55);
+            title_label.TabIndex = 0;
+            title_label.Text = "Treasure Hunt Solver";
             // 
             // input_label
             // 
-            this.input_label.AutoSize = true;
-            this.input_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.input_label.Location = new System.Drawing.Point(116, 119);
-            this.input_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.input_label.Name = "input_label";
-            this.input_label.Size = new System.Drawing.Size(65, 29);
-            this.input_label.TabIndex = 1;
-            this.input_label.Text = "Input";
+            input_label.AutoSize = true;
+            input_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            input_label.Location = new System.Drawing.Point(135, 137);
+            input_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            input_label.Name = "input_label";
+            input_label.Size = new System.Drawing.Size(65, 29);
+            input_label.TabIndex = 1;
+            input_label.Text = "Input";
             // 
             // output_label
             // 
-            this.output_label.AutoSize = true;
-            this.output_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.output_label.Location = new System.Drawing.Point(485, 119);
-            this.output_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.output_label.Name = "output_label";
-            this.output_label.Size = new System.Drawing.Size(84, 29);
-            this.output_label.TabIndex = 2;
-            this.output_label.Text = "Output";
+            output_label.AutoSize = true;
+            output_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            output_label.Location = new System.Drawing.Point(566, 137);
+            output_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            output_label.Name = "output_label";
+            output_label.Size = new System.Drawing.Size(84, 29);
+            output_label.TabIndex = 2;
+            output_label.Text = "Output";
             // 
             // filename_label
             // 
-            this.filename_label.AutoSize = true;
-            this.filename_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filename_label.Location = new System.Drawing.Point(65, 202);
-            this.filename_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.filename_label.Name = "filename_label";
-            this.filename_label.Size = new System.Drawing.Size(89, 24);
-            this.filename_label.TabIndex = 3;
-            this.filename_label.Text = "Filename";
+            filename_label.AutoSize = true;
+            filename_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            filename_label.Location = new System.Drawing.Point(76, 233);
+            filename_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            filename_label.Name = "filename_label";
+            filename_label.Size = new System.Drawing.Size(89, 24);
+            filename_label.TabIndex = 3;
+            filename_label.Text = "Filename";
             // 
             // algoritma_label
             // 
-            this.algoritma_label.AutoSize = true;
-            this.algoritma_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.algoritma_label.Location = new System.Drawing.Point(65, 292);
-            this.algoritma_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.algoritma_label.Name = "algoritma_label";
-            this.algoritma_label.Size = new System.Drawing.Size(89, 24);
-            this.algoritma_label.TabIndex = 4;
-            this.algoritma_label.Text = "Algoritma";
+            algoritma_label.AutoSize = true;
+            algoritma_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            algoritma_label.Location = new System.Drawing.Point(76, 337);
+            algoritma_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            algoritma_label.Name = "algoritma_label";
+            algoritma_label.Size = new System.Drawing.Size(89, 24);
+            algoritma_label.TabIndex = 4;
+            algoritma_label.Text = "Algoritma";
             // 
             // visualize_button
             // 
-            this.visualize_button.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.visualize_button.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.visualize_button.Location = new System.Drawing.Point(19, 416);
-            this.visualize_button.Margin = new System.Windows.Forms.Padding(2);
-            this.visualize_button.Name = "visualize_button";
-            this.visualize_button.Size = new System.Drawing.Size(260, 32);
-            this.visualize_button.TabIndex = 7;
-            this.visualize_button.Text = "Choose File and Visualize!";
-            this.visualize_button.UseVisualStyleBackColor = false;
-            this.visualize_button.Click += new System.EventHandler(this.visualize_button_Click);
+            visualize_button.BackColor = System.Drawing.Color.AntiqueWhite;
+            visualize_button.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            visualize_button.Location = new System.Drawing.Point(22, 480);
+            visualize_button.Margin = new System.Windows.Forms.Padding(2);
+            visualize_button.Name = "visualize_button";
+            visualize_button.Size = new System.Drawing.Size(303, 37);
+            visualize_button.TabIndex = 7;
+            visualize_button.Text = "Choose File and Visualize!";
+            visualize_button.UseVisualStyleBackColor = false;
+            visualize_button.Click += visualize_button_Click;
             // 
             // search_button
             // 
-            this.search_button.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.search_button.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_button.Location = new System.Drawing.Point(466, 416);
-            this.search_button.Margin = new System.Windows.Forms.Padding(2);
-            this.search_button.Name = "search_button";
-            this.search_button.Size = new System.Drawing.Size(140, 32);
-            this.search_button.TabIndex = 8;
-            this.search_button.Text = "Search!";
-            this.search_button.UseVisualStyleBackColor = false;
+            search_button.BackColor = System.Drawing.Color.AntiqueWhite;
+            search_button.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            search_button.Location = new System.Drawing.Point(544, 480);
+            search_button.Margin = new System.Windows.Forms.Padding(2);
+            search_button.Name = "search_button";
+            search_button.Size = new System.Drawing.Size(163, 37);
+            search_button.TabIndex = 8;
+            search_button.Text = "Search!";
+            search_button.UseVisualStyleBackColor = false;
+            search_button.Click += search_button_Click;
             // 
             // routes_label
             // 
-            this.routes_label.AutoSize = true;
-            this.routes_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.routes_label.Location = new System.Drawing.Point(406, 463);
-            this.routes_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.routes_label.Name = "routes_label";
-            this.routes_label.Size = new System.Drawing.Size(52, 15);
-            this.routes_label.TabIndex = 9;
-            this.routes_label.Text = "Routes :";
+            routes_label.AutoSize = true;
+            routes_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            routes_label.Location = new System.Drawing.Point(474, 534);
+            routes_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            routes_label.Name = "routes_label";
+            routes_label.Size = new System.Drawing.Size(52, 15);
+            routes_label.TabIndex = 9;
+            routes_label.Text = "Routes :";
             // 
             // nodes_label
             // 
-            this.nodes_label.AutoSize = true;
-            this.nodes_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nodes_label.Location = new System.Drawing.Point(406, 489);
-            this.nodes_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.nodes_label.Name = "nodes_label";
-            this.nodes_label.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nodes_label.Size = new System.Drawing.Size(49, 15);
-            this.nodes_label.TabIndex = 10;
-            this.nodes_label.Text = "Nodes :";
+            nodes_label.AutoSize = true;
+            nodes_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            nodes_label.Location = new System.Drawing.Point(474, 564);
+            nodes_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            nodes_label.Name = "nodes_label";
+            nodes_label.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            nodes_label.Size = new System.Drawing.Size(49, 15);
+            nodes_label.TabIndex = 10;
+            nodes_label.Text = "Nodes :";
             // 
             // steps_label
             // 
-            this.steps_label.AutoSize = true;
-            this.steps_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.steps_label.Location = new System.Drawing.Point(575, 462);
-            this.steps_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.steps_label.Name = "steps_label";
-            this.steps_label.Size = new System.Drawing.Size(44, 15);
-            this.steps_label.TabIndex = 11;
-            this.steps_label.Text = "Steps :";
+            steps_label.AutoSize = true;
+            steps_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            steps_label.Location = new System.Drawing.Point(671, 533);
+            steps_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            steps_label.Name = "steps_label";
+            steps_label.Size = new System.Drawing.Size(44, 15);
+            steps_label.TabIndex = 11;
+            steps_label.Text = "Steps :";
             // 
             // execution_time_label
             // 
-            this.execution_time_label.AutoSize = true;
-            this.execution_time_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.execution_time_label.Location = new System.Drawing.Point(575, 489);
-            this.execution_time_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.execution_time_label.Name = "execution_time_label";
-            this.execution_time_label.Size = new System.Drawing.Size(98, 15);
-            this.execution_time_label.TabIndex = 12;
-            this.execution_time_label.Text = "Execution Time :";
+            execution_time_label.AutoSize = true;
+            execution_time_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            execution_time_label.Location = new System.Drawing.Point(671, 564);
+            execution_time_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            execution_time_label.Name = "execution_time_label";
+            execution_time_label.Size = new System.Drawing.Size(98, 15);
+            execution_time_label.TabIndex = 12;
+            execution_time_label.Text = "Execution Time :";
             // 
             // routes_ans_label
             // 
-            this.routes_ans_label.AutoSize = true;
-            this.routes_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.routes_ans_label.Location = new System.Drawing.Point(456, 460);
-            this.routes_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.routes_ans_label.Name = "routes_ans_label";
-            this.routes_ans_label.Size = new System.Drawing.Size(14, 17);
-            this.routes_ans_label.TabIndex = 13;
-            this.routes_ans_label.Text = "-";
+            routes_ans_label.AutoSize = true;
+            routes_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            routes_ans_label.Location = new System.Drawing.Point(532, 531);
+            routes_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            routes_ans_label.Name = "routes_ans_label";
+            routes_ans_label.Size = new System.Drawing.Size(14, 17);
+            routes_ans_label.TabIndex = 13;
+            routes_ans_label.Text = "-";
             // 
             // nodes_ans_label
             // 
-            this.nodes_ans_label.AutoSize = true;
-            this.nodes_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nodes_ans_label.Location = new System.Drawing.Point(456, 488);
-            this.nodes_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.nodes_ans_label.Name = "nodes_ans_label";
-            this.nodes_ans_label.Size = new System.Drawing.Size(14, 17);
-            this.nodes_ans_label.TabIndex = 14;
-            this.nodes_ans_label.Text = "-";
+            nodes_ans_label.AutoSize = true;
+            nodes_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            nodes_ans_label.Location = new System.Drawing.Point(532, 563);
+            nodes_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            nodes_ans_label.Name = "nodes_ans_label";
+            nodes_ans_label.Size = new System.Drawing.Size(14, 17);
+            nodes_ans_label.TabIndex = 14;
+            nodes_ans_label.Text = "-";
             // 
             // steps_ans_label
             // 
-            this.steps_ans_label.AutoSize = true;
-            this.steps_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.steps_ans_label.Location = new System.Drawing.Point(620, 461);
-            this.steps_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.steps_ans_label.Name = "steps_ans_label";
-            this.steps_ans_label.Size = new System.Drawing.Size(14, 17);
-            this.steps_ans_label.TabIndex = 15;
-            this.steps_ans_label.Text = "-";
+            steps_ans_label.AutoSize = true;
+            steps_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            steps_ans_label.Location = new System.Drawing.Point(723, 532);
+            steps_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            steps_ans_label.Name = "steps_ans_label";
+            steps_ans_label.Size = new System.Drawing.Size(14, 17);
+            steps_ans_label.TabIndex = 15;
+            steps_ans_label.Text = "-";
             // 
             // execution_time_ans_label
             // 
-            this.execution_time_ans_label.AutoSize = true;
-            this.execution_time_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.execution_time_ans_label.Location = new System.Drawing.Point(671, 488);
-            this.execution_time_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.execution_time_ans_label.Name = "execution_time_ans_label";
-            this.execution_time_ans_label.Size = new System.Drawing.Size(14, 17);
-            this.execution_time_ans_label.TabIndex = 16;
-            this.execution_time_ans_label.Text = "-";
+            execution_time_ans_label.AutoSize = true;
+            execution_time_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            execution_time_ans_label.Location = new System.Drawing.Point(783, 563);
+            execution_time_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            execution_time_ans_label.Name = "execution_time_ans_label";
+            execution_time_ans_label.Size = new System.Drawing.Size(14, 17);
+            execution_time_ans_label.TabIndex = 16;
+            execution_time_ans_label.Text = "-";
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::WindowsFormsApp2.Properties.Resources.straight_black_thin_line_vertical;
-            this.pictureBox2.Location = new System.Drawing.Point(-28, 107);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(680, 430);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 18;
-            this.pictureBox2.TabStop = false;
+            pictureBox2.Image = Properties.Resources.straight_black_thin_line_vertical;
+            pictureBox2.Location = new System.Drawing.Point(-33, 123);
+            pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new System.Drawing.Size(793, 496);
+            pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 18;
+            pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::WindowsFormsApp2.Properties.Resources.straight_black_thin_line;
-            this.pictureBox1.Location = new System.Drawing.Point(-46, -292);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(860, 750);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = Properties.Resources.straight_black_thin_line;
+            pictureBox1.Location = new System.Drawing.Point(-54, -337);
+            pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(1003, 865);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 19;
+            pictureBox1.TabStop = false;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.BurlyWood;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(334, 160);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(398, 251);
-            this.dataGridView1.TabIndex = 20;
+            dataGridView1.BackgroundColor = System.Drawing.Color.BurlyWood;
+            dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new System.Drawing.Point(390, 185);
+            dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 24;
+            dataGridView1.Size = new System.Drawing.Size(464, 290);
+            dataGridView1.TabIndex = 20;
             // 
             // txt_label
             // 
-            this.txt_label.AutoSize = true;
-            this.txt_label.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txt_label.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_label.Location = new System.Drawing.Point(83, 232);
-            this.txt_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.txt_label.Name = "txt_label";
-            this.txt_label.Size = new System.Drawing.Size(18, 18);
-            this.txt_label.TabIndex = 21;
-            this.txt_label.Text = "-";
+            txt_label.AutoSize = true;
+            txt_label.BackColor = System.Drawing.Color.AntiqueWhite;
+            txt_label.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txt_label.Location = new System.Drawing.Point(97, 268);
+            txt_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            txt_label.Name = "txt_label";
+            txt_label.Size = new System.Drawing.Size(18, 18);
+            txt_label.TabIndex = 21;
+            txt_label.Text = "-";
             // 
             // bfsButton
             // 
-            this.bfsButton.AutoSize = true;
-            this.bfsButton.Checked = true;
-            this.bfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F);
-            this.bfsButton.Location = new System.Drawing.Point(86, 319);
-            this.bfsButton.Name = "bfsButton";
-            this.bfsButton.Size = new System.Drawing.Size(73, 30);
-            this.bfsButton.TabIndex = 22;
-            this.bfsButton.TabStop = true;
-            this.bfsButton.Text = "BFS";
-            this.bfsButton.UseVisualStyleBackColor = true;
+            bfsButton.AutoSize = true;
+            bfsButton.Checked = true;
+            bfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            bfsButton.Location = new System.Drawing.Point(100, 368);
+            bfsButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            bfsButton.Name = "bfsButton";
+            bfsButton.Size = new System.Drawing.Size(73, 30);
+            bfsButton.TabIndex = 22;
+            bfsButton.TabStop = true;
+            bfsButton.Text = "BFS";
+            bfsButton.UseVisualStyleBackColor = true;
             // 
             // dfsButton
             // 
-            this.dfsButton.AutoSize = true;
-            this.dfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F);
-            this.dfsButton.Location = new System.Drawing.Point(86, 344);
-            this.dfsButton.Name = "dfsButton";
-            this.dfsButton.Size = new System.Drawing.Size(74, 30);
-            this.dfsButton.TabIndex = 23;
-            this.dfsButton.TabStop = true;
-            this.dfsButton.Text = "DFS";
-            this.dfsButton.UseVisualStyleBackColor = true;
+            dfsButton.AutoSize = true;
+            dfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dfsButton.Location = new System.Drawing.Point(100, 397);
+            dfsButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            dfsButton.Name = "dfsButton";
+            dfsButton.Size = new System.Drawing.Size(74, 30);
+            dfsButton.TabIndex = 23;
+            dfsButton.TabStop = true;
+            dfsButton.Text = "DFS";
+            dfsButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.NavajoWhite;
-            this.ClientSize = new System.Drawing.Size(808, 531);
-            this.Controls.Add(this.dfsButton);
-            this.Controls.Add(this.bfsButton);
-            this.Controls.Add(this.txt_label);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.execution_time_ans_label);
-            this.Controls.Add(this.steps_ans_label);
-            this.Controls.Add(this.nodes_ans_label);
-            this.Controls.Add(this.routes_ans_label);
-            this.Controls.Add(this.execution_time_label);
-            this.Controls.Add(this.steps_label);
-            this.Controls.Add(this.nodes_label);
-            this.Controls.Add(this.routes_label);
-            this.Controls.Add(this.search_button);
-            this.Controls.Add(this.visualize_button);
-            this.Controls.Add(this.algoritma_label);
-            this.Controls.Add(this.filename_label);
-            this.Controls.Add(this.output_label);
-            this.Controls.Add(this.input_label);
-            this.Controls.Add(this.title_label);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
-            this.Text = "Treasure Hunt Solver";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.NavajoWhite;
+            ClientSize = new System.Drawing.Size(943, 613);
+            Controls.Add(dfsButton);
+            Controls.Add(bfsButton);
+            Controls.Add(txt_label);
+            Controls.Add(dataGridView1);
+            Controls.Add(execution_time_ans_label);
+            Controls.Add(steps_ans_label);
+            Controls.Add(nodes_ans_label);
+            Controls.Add(routes_ans_label);
+            Controls.Add(execution_time_label);
+            Controls.Add(steps_label);
+            Controls.Add(nodes_label);
+            Controls.Add(routes_label);
+            Controls.Add(search_button);
+            Controls.Add(visualize_button);
+            Controls.Add(algoritma_label);
+            Controls.Add(filename_label);
+            Controls.Add(output_label);
+            Controls.Add(input_label);
+            Controls.Add(title_label);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            Margin = new System.Windows.Forms.Padding(2);
+            Name = "Form1";
+            Text = "Treasure Hunt Solver";
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

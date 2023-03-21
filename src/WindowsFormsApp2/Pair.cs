@@ -17,5 +17,15 @@ namespace WindowsFormsApp2
             first = a;
             second = b;
         }
+
+        public override string ToString() 
+        {
+            return "(" + first.ToString() + "," + second.ToString() + ")";
+        }
+
+        public static Pair<T1, T2> operator + (Pair<T1, T2> a, Pair<T1, T2> b)
+        {
+            return new Pair<T1, T2>((dynamic) a.first + b.first, (dynamic) a.second + b.second);
+        }
     }
 }
