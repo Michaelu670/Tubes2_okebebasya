@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.LinkLabel;
 using System.Threading;
+using System.Diagnostics;
 
 namespace WindowsFormsApp2
 {
@@ -99,6 +100,7 @@ namespace WindowsFormsApp2
                     dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     dataGridView1.DefaultCellStyle.Font = new Font("Tahoma", 12);
+                    
 
                     // resize dataTable
                     int cellSize = 20;
@@ -203,7 +205,14 @@ namespace WindowsFormsApp2
                         if (dfsButton.Checked)
                         {
                             DFS dfs = new DFS(inputUtils);
+                            var watch = new Stopwatch();
+                            watch.Start();
                             var result = dfs.Solve();
+                            watch.Stop();
+
+                            execution_time_ans_label.Text = watch.ElapsedMilliseconds + " ms";
+
+                            // TODO move visualize outside if to reduce redundancy
 
                             visualizeState = VisualizeState.Running;
                             RefreshVisualizeState();
