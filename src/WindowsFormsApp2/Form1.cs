@@ -13,9 +13,25 @@ using System.Threading;
 
 namespace WindowsFormsApp2
 {
+    public enum VisualizeState
+    {
+        Normal,
+        Running,
+        Finished
+    }
+
     public partial class Form1 : Form
     {
         private InputUtils inputUtils;
+        private VisualizeState visualizeState;
+        private readonly Dictionary<VisualizeState, string> searchButtonText = 
+            new()
+        {
+                {VisualizeState.Normal, "Search!" },
+                {VisualizeState.Running, "Wait..." },
+                {VisualizeState.Finished, "Clear" }
+        };
+
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +40,8 @@ namespace WindowsFormsApp2
         private void Form1_Load(object sender, EventArgs e)
         {
             inputUtils = null;
+            visualizeState = VisualizeState.Normal;
+            dataGridView1.DoubleBuffered(true);
         }
 
 
@@ -101,7 +119,12 @@ namespace WindowsFormsApp2
 
             }
         }
-
+        private Thread StartVisualize(string searchPath, string directPath = "")
+        {
+            var visThread = new Thread(() => Visualize(searchPath, directPath));
+            visThread.Start();
+            return visThread;
+        }
         private void Visualize(string searchPath, string directPath = "")
         {
             Pair<int, int> position = inputUtils.startCoordinate;
@@ -109,29 +132,60 @@ namespace WindowsFormsApp2
             
             foreach (char c in directPath)
             {
-                position = position + TraverseRule.moveDirection[c.ToString()];
+                position += TraverseRule.moveDirection[c.ToString()];
                 dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = Color.Green;
+                Thread.CurrentThread.Join(200);
             }
-        }
 
+            visualizeState = VisualizeState.Finished;
+            this.Invoke(RefreshSearchButtonText);
+        }
+        private void RefreshSearchButtonText()
+        {
+            search_button.Text = searchButtonText[visualizeState];
+        }
         private void search_button_Click(object sender, EventArgs e)
         {
             try
             {
-                if (inputUtils == null) throw new Exception("No file selected");
-                if (dfsButton.Checked)
+                switch (visualizeState)
                 {
-                    DFS dfs = new DFS(inputUtils);
-                    var result = dfs.Solve();
-                    Visualize(result.Item1, result.Item2);
-                }
-                else if (bfsButton.Checked)
-                {
+                    case VisualizeState.Normal:
+                        inputUtils = new InputUtils((DataTable)dataGridView1.DataSource);
+                        if (dfsButton.Checked)
+                        {
+                            DFS dfs = new DFS(inputUtils);
+                            var result = dfs.Solve();
 
-                }
-                else
-                {
-                    throw new Exception("No button checked");
+                            visualizeState = VisualizeState.Running;
+                            RefreshSearchButtonText();
+
+                            var visThread = StartVisualize(result.Item1, result.Item2);
+                        }
+                        else if (bfsButton.Checked)
+                        {
+
+                        }
+                        else
+                        {
+                            throw new Exception("No button checked");
+                        }
+                        break;
+                    case VisualizeState.Running:
+                        break;
+                    case VisualizeState.Finished:
+                        visualizeState = VisualizeState.Normal;
+                        RefreshSearchButtonText();
+
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                cell.Style.BackColor = Color.White;
+                            }
+                        }
+
+                        break;
                 }
             }
             catch (Exception ex)

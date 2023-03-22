@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime;
+using System.Data;
 
 namespace WindowsFormsApp2
 {
@@ -22,9 +23,24 @@ namespace WindowsFormsApp2
         public InputUtils(string filePath)
         {
             lines = File.ReadAllLines(filePath);
-
             InputValidator();
-            
+            FillAttributes();
+        }
+
+        public InputUtils(DataTable dataTable)
+        {
+            lines = Array.Empty<string>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                lines = lines.Append(row.ItemArray.Select(x => x.ToString()).
+                    Aggregate((cur, next) => (cur.Length == 0 ? next : cur + " " + next))).ToArray();
+            }
+            InputValidator();
+            FillAttributes();
+        }
+
+        private void FillAttributes()
+        {
             row = lines.Length;
             col = lines[0].Split(' ').Length;
 
@@ -39,7 +55,7 @@ namespace WindowsFormsApp2
                     {
                         throw new Exception("Input salah pada baris ke-" + i.ToString());
                     }
-                    tmpMatrix[i,j] = chArr[0];
+                    tmpMatrix[i, j] = chArr[0];
                 }
             }
             matrix = tmpMatrix;
@@ -74,7 +90,7 @@ namespace WindowsFormsApp2
                     if (!Array.Exists(validSymbol, element => element == values[j]))
                     {
                         // kalau input gak ada di validSymbol berarti invalid
-                        throw new Exception("Invalid symbol");
+                        throw new Exception("Invalid symbol(" + values[j] + ") at (" + i + "," + j + ")");
                     }
                     if (values[j] == "K") kCount++;
                 }

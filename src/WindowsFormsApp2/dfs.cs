@@ -39,7 +39,7 @@ namespace WindowsFormsApp2
         private void traverse(Pair<int, int> pos, ref string path, string prevDirection = "")
         {
             if (currentSearchFound) { return; }
-            if (outside(pos)) { return; }
+            if (Outside(pos)) { return; }
             if (this.visited[pos.first, pos.second]) { return; }
             if (peta[pos.first, pos.second] == 'X') { return; }
             this.visited[pos.first, pos.second] = true;
@@ -80,7 +80,6 @@ namespace WindowsFormsApp2
                 traverse(startCoordinate, ref searchPath);
                 char[] charArr = directPath.ToCharArray();
                 Array.Reverse(charArr);
-                MessageBox.Show(new string(charArr));
                 path += new string(charArr);
             }
             
@@ -106,7 +105,7 @@ namespace WindowsFormsApp2
             }
         }
 
-        private bool outside(Pair<int, int> pos)
+        private bool Outside(Pair<int, int> pos)
         {
             return pos.first < 0 || pos.second < 0 || pos.first >= sizeX || pos.second >= sizeY;
         }
