@@ -49,9 +49,13 @@
             txt_label = new System.Windows.Forms.Label();
             bfsButton = new System.Windows.Forms.RadioButton();
             dfsButton = new System.Windows.Forms.RadioButton();
+            SpeedBar = new System.Windows.Forms.TrackBar();
+            label1 = new System.Windows.Forms.Label();
+            SpeedLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SpeedBar).BeginInit();
             SuspendLayout();
             // 
             // title_label
@@ -92,7 +96,7 @@
             // 
             filename_label.AutoSize = true;
             filename_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            filename_label.Location = new System.Drawing.Point(76, 233);
+            filename_label.Location = new System.Drawing.Point(76, 202);
             filename_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             filename_label.Name = "filename_label";
             filename_label.Size = new System.Drawing.Size(89, 24);
@@ -103,7 +107,7 @@
             // 
             algoritma_label.AutoSize = true;
             algoritma_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            algoritma_label.Location = new System.Drawing.Point(76, 337);
+            algoritma_label.Location = new System.Drawing.Point(76, 298);
             algoritma_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             algoritma_label.Name = "algoritma_label";
             algoritma_label.Size = new System.Drawing.Size(89, 24);
@@ -114,7 +118,7 @@
             // 
             visualize_button.BackColor = System.Drawing.Color.AntiqueWhite;
             visualize_button.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            visualize_button.Location = new System.Drawing.Point(22, 480);
+            visualize_button.Location = new System.Drawing.Point(24, 522);
             visualize_button.Margin = new System.Windows.Forms.Padding(2);
             visualize_button.Name = "visualize_button";
             visualize_button.Size = new System.Drawing.Size(303, 37);
@@ -265,7 +269,7 @@
             txt_label.AutoSize = true;
             txt_label.BackColor = System.Drawing.Color.AntiqueWhite;
             txt_label.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            txt_label.Location = new System.Drawing.Point(97, 268);
+            txt_label.Location = new System.Drawing.Point(97, 237);
             txt_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             txt_label.Name = "txt_label";
             txt_label.Size = new System.Drawing.Size(18, 18);
@@ -277,7 +281,7 @@
             bfsButton.AutoSize = true;
             bfsButton.Checked = true;
             bfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            bfsButton.Location = new System.Drawing.Point(100, 368);
+            bfsButton.Location = new System.Drawing.Point(100, 329);
             bfsButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             bfsButton.Name = "bfsButton";
             bfsButton.Size = new System.Drawing.Size(73, 30);
@@ -290,7 +294,7 @@
             // 
             dfsButton.AutoSize = true;
             dfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dfsButton.Location = new System.Drawing.Point(100, 397);
+            dfsButton.Location = new System.Drawing.Point(100, 358);
             dfsButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             dfsButton.Name = "dfsButton";
             dfsButton.Size = new System.Drawing.Size(74, 30);
@@ -299,12 +303,46 @@
             dfsButton.Text = "DFS";
             dfsButton.UseVisualStyleBackColor = true;
             // 
+            // SpeedBar
+            // 
+            SpeedBar.Location = new System.Drawing.Point(76, 472);
+            SpeedBar.Maximum = 50;
+            SpeedBar.Name = "SpeedBar";
+            SpeedBar.Size = new System.Drawing.Size(104, 45);
+            SpeedBar.TabIndex = 24;
+            SpeedBar.Scroll += SpeedBar_Scroll;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.Location = new System.Drawing.Point(76, 430);
+            label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(66, 24);
+            label1.TabIndex = 25;
+            label1.Text = "Speed";
+            // 
+            // SpeedLabel
+            // 
+            SpeedLabel.AutoSize = true;
+            SpeedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            SpeedLabel.Location = new System.Drawing.Point(185, 472);
+            SpeedLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            SpeedLabel.Name = "SpeedLabel";
+            SpeedLabel.Size = new System.Drawing.Size(103, 24);
+            SpeedLabel.TabIndex = 26;
+            SpeedLabel.Text = "0.2/second";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.NavajoWhite;
             ClientSize = new System.Drawing.Size(943, 613);
+            Controls.Add(SpeedLabel);
+            Controls.Add(label1);
+            Controls.Add(SpeedBar);
             Controls.Add(dfsButton);
             Controls.Add(bfsButton);
             Controls.Add(txt_label);
@@ -334,6 +372,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SpeedBar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -361,6 +400,9 @@
         private System.Windows.Forms.Label txt_label;
         private System.Windows.Forms.RadioButton bfsButton;
         private System.Windows.Forms.RadioButton dfsButton;
+        private System.Windows.Forms.TrackBar SpeedBar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label SpeedLabel;
     }
 }
 

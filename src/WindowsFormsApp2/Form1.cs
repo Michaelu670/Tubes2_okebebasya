@@ -25,13 +25,15 @@ namespace WindowsFormsApp2
     {
         private InputUtils inputUtils;
         private VisualizeState visualizeState;
-        private readonly Dictionary<VisualizeState, string> searchButtonText = 
+        private readonly Dictionary<VisualizeState, string> searchButtonText =
             new()
         {
                 {VisualizeState.Normal, "Search!" },
                 {VisualizeState.Running, "Wait..." },
                 {VisualizeState.Finished, "Clear" }
         };
+
+        private int waitTime = 0;
 
         public Form1()
         {
@@ -43,6 +45,9 @@ namespace WindowsFormsApp2
             inputUtils = null;
             visualizeState = VisualizeState.Normal;
             dataGridView1.DoubleBuffered(true);
+
+            waitTime = 5000;
+            SpeedBar.TickStyle = TickStyle.None;
         }
 
 
@@ -100,7 +105,7 @@ namespace WindowsFormsApp2
                     dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     dataGridView1.DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    
+
 
                     // resize dataTable
                     int cellSize = 20;
@@ -140,7 +145,7 @@ namespace WindowsFormsApp2
                 var pos = searchPath[i];
                 var prevPos = i < 1 ? null : searchPath[i - 1];
                 var fivePrevPos = i < 5 ? null : searchPath[i - 5];
-                dataGridView1.Rows[pos.first].Cells[pos.second].Style.BackColor = 
+                dataGridView1.Rows[pos.first].Cells[pos.second].Style.BackColor =
                     GridColor.ColorList["SearchHead"];
                 if (prevPos != null)
                 {
@@ -152,15 +157,15 @@ namespace WindowsFormsApp2
                     dataGridView1.Rows[fivePrevPos.first].Cells[fivePrevPos.second].Style.BackColor =
                         GridColor.ColorList["SearchTrailElse"];
                 }
-                Thread.CurrentThread.Join(200);
+                Thread.CurrentThread.Join(waitTime);
             }
 
-            
+
             Pair<int, int> position = inputUtils.startCoordinate;
             dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.ColorList["PathHead"];
             var prevColor = GridColor.ColorList["Default"];
 
-            
+
             foreach (char c in directPath)
             {
                 // change previous position color
@@ -170,7 +175,7 @@ namespace WindowsFormsApp2
                 // record current color; then change it
                 prevColor = dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor;
                 dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.ColorList["PathHead"];
-                Thread.CurrentThread.Join(200);
+                Thread.CurrentThread.Join(waitTime);
             }
             // change last grid color
             dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.NextColor(prevColor);
@@ -186,7 +191,7 @@ namespace WindowsFormsApp2
                 case VisualizeState.Normal:
                     dataGridView1.ReadOnly = false;
                     break;
-                case VisualizeState.Running: 
+                case VisualizeState.Running:
                     dataGridView1.ReadOnly = true;
                     break;
                 case VisualizeState.Finished:
@@ -249,7 +254,21 @@ namespace WindowsFormsApp2
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
+        }
+
+        private void SpeedBar_Scroll(object sender, EventArgs e)
+        {
+            if (SpeedBar.Value == SpeedBar.Maximum)
+            {
+                SpeedLabel.Text = "Max speed";
+                waitTime = 0;
+            }
+            else
+            {
+                SpeedLabel.Text = ((float)(1 + SpeedBar.Value) / 5) + "/second";
+                waitTime = 5000 / (1 + SpeedBar.Value);
+            }
         }
     }
 }
