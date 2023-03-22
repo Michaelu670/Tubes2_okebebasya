@@ -36,13 +36,15 @@ namespace WindowsFormsApp2
             this.pred = new Pair<int, int>[sizeX, sizeY];
             this.visited = new bool[sizeX,sizeY];
         }
-        private void traverse(Pair<int, int> pos, ref string path, string prevDirection = "")
+        private void traverse(Pair<int, int> pos, ref List<Pair<int, int>> path, string prevDirection = "")
         {
             if (currentSearchFound) { return; }
             if (Outside(pos)) { return; }
             if (this.visited[pos.first, pos.second]) { return; }
             if (peta[pos.first, pos.second] == 'X') { return; }
             this.visited[pos.first, pos.second] = true;
+
+            path.Add(pos);
 
             if (peta[pos.first, pos.second] == 'T')
             {
@@ -54,8 +56,6 @@ namespace WindowsFormsApp2
                 return;
             }
 
-            path += prevDirection;
-
             foreach (var direction in TraverseRule.moveDirection)
             {
                 traverse(pos + direction.Value, ref path, direction.Key);
@@ -66,12 +66,12 @@ namespace WindowsFormsApp2
                 }
             }
 
-            path += TraverseRule.reverseDirection[prevDirection];
+            path.Add(pos);
         }
-        public (string, string) Solve()
+        public (List<Pair<int, int>>, string) Solve()
         {
             HardReset();
-            string searchPath = "";
+            var searchPath = new List<Pair<int, int>>();
             string path = "";
             
             for (int i = 0; i < treasuresCoordinate.Count; i++)

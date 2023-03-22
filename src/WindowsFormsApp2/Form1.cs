@@ -92,21 +92,26 @@ namespace WindowsFormsApp2
                     }
 
                     // Mengatur visualisasi DataTable
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+                    dataGridView1.ColumnHeadersVisible = false;
+                    dataGridView1.RowHeadersVisible = false;
                     dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     dataGridView1.DefaultCellStyle.Font = new Font("Tahoma", 12);
 
-                    int cellSize = 50;
-                    dataGridView1.RowTemplate.Height = cellSize;
-                    foreach (DataGridViewColumn col in dataGridView1.Columns)
-                    {
-                        col.Width = cellSize;
-                    }
+                    // resize dataTable
+                    int cellSize = 20;
+                    dataGridView1.RowTemplate.MinimumHeight = cellSize;
 
                     // Menampilkan DataTable
                     dataGridView1.DataSource = dt;
                     txt_label.Text = Path.GetFileName(filePath);
+
+                    foreach (DataGridViewColumn col in dataGridView1.Columns)
+                    {
+                        col.MinimumWidth = cellSize;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -119,30 +124,73 @@ namespace WindowsFormsApp2
 
             }
         }
-        private Thread StartVisualize(string searchPath, string directPath = "")
+        private Thread StartVisualize(List<Pair<int, int>> searchPath, string directPath = "")
         {
             var visThread = new Thread(() => Visualize(searchPath, directPath));
             visThread.Start();
             return visThread;
         }
-        private void Visualize(string searchPath, string directPath = "")
+        private void Visualize(List<Pair<int, int>> searchPath, string directPath = "")
         {
-            Pair<int, int> position = inputUtils.startCoordinate;
-            dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = Color.Green;
-            
-            foreach (char c in directPath)
+            // visualize search path with trail
+            for (int i = 0; i < searchPath.Count; i++)
             {
-                position += TraverseRule.moveDirection[c.ToString()];
-                dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = Color.Green;
+                var pos = searchPath[i];
+                var prevPos = i < 1 ? null : searchPath[i - 1];
+                var fivePrevPos = i < 5 ? null : searchPath[i - 5];
+                dataGridView1.Rows[pos.first].Cells[pos.second].Style.BackColor = 
+                    GridColor.ColorList["SearchHead"];
+                if (prevPos != null)
+                {
+                    dataGridView1.Rows[prevPos.first].Cells[prevPos.second].Style.BackColor =
+                        GridColor.ColorList["SearchTrailFive"];
+                }
+                if (fivePrevPos != null)
+                {
+                    dataGridView1.Rows[fivePrevPos.first].Cells[fivePrevPos.second].Style.BackColor =
+                        GridColor.ColorList["SearchTrailElse"];
+                }
                 Thread.CurrentThread.Join(200);
             }
 
+            
+            Pair<int, int> position = inputUtils.startCoordinate;
+            dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.ColorList["PathHead"];
+            var prevColor = GridColor.ColorList["Default"];
+
+            
+            foreach (char c in directPath)
+            {
+                // change previous position color
+                dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.NextColor(prevColor);
+
+                position += TraverseRule.moveDirection[c.ToString()];
+                // record current color; then change it
+                prevColor = dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor;
+                dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.ColorList["PathHead"];
+                Thread.CurrentThread.Join(200);
+            }
+            // change last grid color
+            dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.NextColor(prevColor);
+
             visualizeState = VisualizeState.Finished;
-            this.Invoke(RefreshSearchButtonText);
+            this.Invoke(RefreshVisualizeState);
         }
-        private void RefreshSearchButtonText()
+        private void RefreshVisualizeState()
         {
             search_button.Text = searchButtonText[visualizeState];
+            switch (visualizeState)
+            {
+                case VisualizeState.Normal:
+                    dataGridView1.ReadOnly = false;
+                    break;
+                case VisualizeState.Running: 
+                    dataGridView1.ReadOnly = true;
+                    break;
+                case VisualizeState.Finished:
+                    dataGridView1.ReadOnly = true;
+                    break;
+            }
         }
         private void search_button_Click(object sender, EventArgs e)
         {
@@ -158,7 +206,7 @@ namespace WindowsFormsApp2
                             var result = dfs.Solve();
 
                             visualizeState = VisualizeState.Running;
-                            RefreshSearchButtonText();
+                            RefreshVisualizeState();
 
                             var visThread = StartVisualize(result.Item1, result.Item2);
                         }
@@ -175,13 +223,13 @@ namespace WindowsFormsApp2
                         break;
                     case VisualizeState.Finished:
                         visualizeState = VisualizeState.Normal;
-                        RefreshSearchButtonText();
+                        RefreshVisualizeState();
 
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             foreach (DataGridViewCell cell in row.Cells)
                             {
-                                cell.Style.BackColor = Color.White;
+                                cell.Style.BackColor = GridColor.ColorList["Default"];
                             }
                         }
 
