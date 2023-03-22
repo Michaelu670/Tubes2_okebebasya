@@ -44,4 +44,5 @@ command to run if program contains helper info
 Inspiration, code snippets, etc.
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
 * [double buffering winforms](https://www.kodesiana.com/post/mengatasi-lag-datagridview-csharp/)
+* [color gradient generator](https://coolors.co/gradient-palette)
 
