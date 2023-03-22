@@ -157,7 +157,7 @@ namespace WindowsFormsApp2
                 {
                     if (matrix[i,j] == 'T')
                     {
-                        coordinate[currentIndex++] = new Pair<int, int>(row, col);
+                        coordinate[currentIndex++] = new Pair<int, int>(i, j);
                     }
                 }
             }

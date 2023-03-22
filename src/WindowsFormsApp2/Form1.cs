@@ -226,7 +226,11 @@ namespace WindowsFormsApp2
                         }
                         else if (bfsButton.Checked)
                         {
-
+                            BFS bfs = new BFS(inputUtils);
+                            var result = bfs.Solve();
+                            MessageBox.Show(result.Item2);
+                            MessageBox.Show("node visited : " + result.Item3);
+                            MessageBox.Show("steps : " + result.Item4);
                         }
                         else
                         {
