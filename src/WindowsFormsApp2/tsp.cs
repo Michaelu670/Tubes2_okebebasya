@@ -56,8 +56,8 @@ namespace WindowsFormsApp2
                 distance += shortestPathMove[startIndex, p[0]];
                 currpath += shortestPathString[startIndex, p[0]];
                 for(int i=0;i<banyakTreasure-1;i++){ // ? bisa di exhaustive tapi gak improve banyak
-                    distance += shortestPathMove[i, i+1];
-                    currpath += shortestPathString[i, i+1];
+                    distance += shortestPathMove[p[i], p[i+1]];
+                    currpath += shortestPathString[p[i], p[i+1]];
                 }
                 distance += shortestPathMove[p[banyakTreasure-1], startIndex];
                 currpath += shortestPathString[p[banyakTreasure-1], startIndex];
