@@ -264,6 +264,9 @@ namespace WindowsFormsApp2
                         }
                         watch.Stop();
                         execution_time_ans_label.Text = watch.ElapsedMilliseconds + " ms";
+                        routes_ans_label.Text = Enumerable.Range(0, result.Item2.Length)
+                            .Select(i => result.Item2[i].ToString())
+                            .Aggregate((res, next) => res == "" ? next : res + " - " + next);
                         nodes_ans_label.Text = result.Item3.ToString();
                         steps_ans_label.Text = result.Item4.ToString();
 

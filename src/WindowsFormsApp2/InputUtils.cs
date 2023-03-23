@@ -29,6 +29,7 @@ namespace WindowsFormsApp2
 
         public InputUtils(DataTable dataTable)
         {
+            if (dataTable is null) throw new Exception("No map selected yet");
             lines = Array.Empty<string>();
             foreach (DataRow row in dataTable.Rows)
             {

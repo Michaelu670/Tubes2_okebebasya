@@ -54,11 +54,13 @@
             algorithm_panel = new System.Windows.Forms.Panel();
             tspButton = new System.Windows.Forms.RadioButton();
             dfsButton = new System.Windows.Forms.RadioButton();
+            panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SpeedBar).BeginInit();
             algorithm_panel.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // title_label
@@ -158,7 +160,7 @@
             // 
             nodes_label.AutoSize = true;
             nodes_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            nodes_label.Location = new System.Drawing.Point(474, 564);
+            nodes_label.Location = new System.Drawing.Point(474, 573);
             nodes_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             nodes_label.Name = "nodes_label";
             nodes_label.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -181,7 +183,7 @@
             // 
             execution_time_label.AutoSize = true;
             execution_time_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            execution_time_label.Location = new System.Drawing.Point(671, 564);
+            execution_time_label.Location = new System.Drawing.Point(671, 573);
             execution_time_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             execution_time_label.Name = "execution_time_label";
             execution_time_label.Size = new System.Drawing.Size(98, 15);
@@ -192,7 +194,7 @@
             // 
             routes_ans_label.AutoSize = true;
             routes_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            routes_ans_label.Location = new System.Drawing.Point(532, 531);
+            routes_ans_label.Location = new System.Drawing.Point(4, 3);
             routes_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             routes_ans_label.Name = "routes_ans_label";
             routes_ans_label.Size = new System.Drawing.Size(14, 17);
@@ -203,7 +205,7 @@
             // 
             nodes_ans_label.AutoSize = true;
             nodes_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            nodes_ans_label.Location = new System.Drawing.Point(532, 563);
+            nodes_ans_label.Location = new System.Drawing.Point(532, 572);
             nodes_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             nodes_ans_label.Name = "nodes_ans_label";
             nodes_ans_label.Size = new System.Drawing.Size(14, 17);
@@ -225,7 +227,7 @@
             // 
             execution_time_ans_label.AutoSize = true;
             execution_time_ans_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            execution_time_ans_label.Location = new System.Drawing.Point(783, 563);
+            execution_time_ans_label.Location = new System.Drawing.Point(783, 572);
             execution_time_ans_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             execution_time_ans_label.Name = "execution_time_ans_label";
             execution_time_ans_label.Size = new System.Drawing.Size(14, 17);
@@ -362,12 +364,22 @@
             dfsButton.Text = "DFS";
             dfsButton.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.AutoScroll = true;
+            panel1.Controls.Add(routes_ans_label);
+            panel1.Location = new System.Drawing.Point(529, 532);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(118, 37);
+            panel1.TabIndex = 28;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.NavajoWhite;
             ClientSize = new System.Drawing.Size(943, 613);
+            Controls.Add(panel1);
             Controls.Add(algorithm_panel);
             Controls.Add(SpeedLabel);
             Controls.Add(label1);
@@ -377,7 +389,6 @@
             Controls.Add(execution_time_ans_label);
             Controls.Add(steps_ans_label);
             Controls.Add(nodes_ans_label);
-            Controls.Add(routes_ans_label);
             Controls.Add(execution_time_label);
             Controls.Add(steps_label);
             Controls.Add(nodes_label);
@@ -402,6 +413,8 @@
             ((System.ComponentModel.ISupportInitialize)SpeedBar).EndInit();
             algorithm_panel.ResumeLayout(false);
             algorithm_panel.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -434,6 +447,7 @@
         private System.Windows.Forms.Panel algorithm_panel;
         private System.Windows.Forms.RadioButton tspButton;
         private System.Windows.Forms.RadioButton dfsButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
