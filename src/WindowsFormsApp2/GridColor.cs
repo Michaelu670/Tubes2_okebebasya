@@ -12,6 +12,7 @@ namespace WindowsFormsApp2
         public static readonly Dictionary<string, Color> ColorList = new Dictionary<string, Color>()
         {
             {"Default", Color.FromArgb(0xED, 0xF1, 0xD6) },
+            {"Obstacle", Color.Black },
 
             {"SearchHead", Color.FromArgb(0x59, 0x5C, 0xFF) },
             {"SearchTrailFive", Color.FromArgb(0x90, 0xAA, 0xFF) },
@@ -20,7 +21,10 @@ namespace WindowsFormsApp2
             {"PathHead", Color.FromArgb(0x5C, 0xB2, 0x70) },
             {"PathOnce", Color.FromArgb(0xE9, 0xD0, 0x22) },
             {"PathTwice", Color.FromArgb(0xF4, 0xB7, 0x16) },
-            {"PathOften", Color.FromArgb(0xFF, 0x9D, 0x09) }
+            {"PathOften", Color.FromArgb(0xFF, 0x9D, 0x09) },
+
+            {"Processing", Color.Blue },
+            {"ProcessFinished", Color.Yellow }
 
         };
 

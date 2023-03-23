@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,11 +20,12 @@ namespace WindowsFormsApp2
         private Pair<int, int> startCoordinate;
         private List<Pair<int, int>> treasuresCoordinate;
         private bool[,] visited;
+        private bool[,] needed;
         private Pair<int, int>[,] pred;
 
         private int found;
-        private bool currentSearchFound;
         private string directPath;
+        private int nodeTraversed;
 
         public DFS(InputUtils inputUtils)
         {
@@ -35,65 +38,66 @@ namespace WindowsFormsApp2
 
             this.pred = new Pair<int, int>[sizeX, sizeY];
             this.visited = new bool[sizeX,sizeY];
+            this.needed = new bool[sizeX,sizeY];
         }
-        private void traverse(Pair<int, int> pos, ref List<Pair<int, int>> path, string prevDirection = "")
+        private bool traverse(Pair<int, int> pos, ref List<(PathAction, Pair<int, int>)> path, string prevDirection = "")
         {
-            if (currentSearchFound) { return; }
-            if (Outside(pos)) { return; }
-            if (this.visited[pos.first, pos.second]) { return; }
-            if (peta[pos.first, pos.second] == 'X') { return; }
+            if (found == treasuresCoordinate.Count) { return false; }
+            if (Outside(pos)) { return false; }
+            if (this.visited[pos.first, pos.second]) { return false; }
+            if (peta[pos.first, pos.second] == 'X') { return false; }
             this.visited[pos.first, pos.second] = true;
+            nodeTraversed++;
 
-            path.Add(pos);
+            path.Add((PathAction.ProcessStart, pos));
+            directPath += prevDirection;
+            var currentNodeNeeded = false;
 
             if (peta[pos.first, pos.second] == 'T')
             {
                 found++;
-                currentSearchFound = true;
-                peta[pos.first, pos.second] = 'R';
-
-                startCoordinate = pos;
-                return;
+                currentNodeNeeded = true;
             }
 
             foreach (var direction in TraverseRule.moveDirection)
             {
-                traverse(pos + direction.Value, ref path, direction.Key);
-                if (currentSearchFound)
-                {
-                    directPath += direction.Key;
-                    break;
-                }
+                currentNodeNeeded |= traverse(pos + direction.Value, ref path, direction.Key);
             }
 
-            path.Add(pos);
+            path.Add((PathAction.ProcessFinish, pos));
+            if (found != treasuresCoordinate.Count) 
+            { 
+                directPath += TraverseRule.reverseDirection[prevDirection]; 
+            }
+            return needed[pos.first, pos.second] = currentNodeNeeded;
         }
-        public (List<Pair<int, int>>, string) Solve()
+        public (List<(PathAction, Pair<int, int>)>, string, int, int) Solve()
         {
             HardReset();
-            var searchPath = new List<Pair<int, int>>();
+            var searchPath = new List<(PathAction, Pair<int, int>)>();
             string path = "";
             
-            for (int i = 0; i < treasuresCoordinate.Count; i++)
+            traverse(startCoordinate, ref searchPath);
+            var coordinate = new Pair<int, int>(startCoordinate.first, startCoordinate.second);
+
+            foreach (char c in directPath)
             {
-                SoftReset();
-                traverse(startCoordinate, ref searchPath);
-                char[] charArr = directPath.ToCharArray();
-                Array.Reverse(charArr);
-                path += new string(charArr);
+                bool prevNeed = needed[coordinate.first, coordinate.second];
+                coordinate += TraverseRule.moveDirection[c.ToString()];
+                if (needed[coordinate.first, coordinate.second] && prevNeed)
+                {
+                    path += c;
+                }
             }
             
-            return (searchPath, path);
+            return (searchPath, path, nodeTraversed, path.Length);
         }
         private void HardReset()
         {
             peta = (char[,])petaAwal.Clone();
             found = 0;
-        }
-        private void SoftReset()
-        {
+            nodeTraversed = 0;
             directPath = "";
-            currentSearchFound = false;
             for (int i = 0; i < pred.GetLength(0); i++)
             {
                 for (int j = 0; j < pred.GetLength(1); j++)
@@ -101,6 +105,7 @@ namespace WindowsFormsApp2
                     pred[i, j] = new Pair<int, int>(0, 0);
 
                     visited[i, j] = false;
+                    needed[i, j] = false;
                 }
             }
         }

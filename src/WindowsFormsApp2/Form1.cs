@@ -17,7 +17,9 @@ namespace WindowsFormsApp2
     public enum VisualizeState
     {
         Normal,
-        Running,
+        Traverse,
+        TraverseFinish,
+        ShowingResult,
         Finished
     }
 
@@ -25,11 +27,15 @@ namespace WindowsFormsApp2
     {
         private InputUtils inputUtils;
         private VisualizeState visualizeState;
+        private (List<(PathAction, Pair<int, int>)>, string, int, int) result;
+
         private readonly Dictionary<VisualizeState, string> searchButtonText =
             new()
         {
                 {VisualizeState.Normal, "Search!" },
-                {VisualizeState.Running, "Wait..." },
+                {VisualizeState.Traverse, "Wait..." },
+                {VisualizeState.TraverseFinish, "Show Path!" },
+                {VisualizeState.ShowingResult, "Wait..." },
                 {VisualizeState.Finished, "Clear" }
         };
 
@@ -45,6 +51,7 @@ namespace WindowsFormsApp2
             inputUtils = null;
             visualizeState = VisualizeState.Normal;
             dataGridView1.DoubleBuffered(true);
+            dataGridView1.ReadOnly = true;
 
             waitTime = 5000;
             SpeedBar.TickStyle = TickStyle.None;
@@ -54,6 +61,12 @@ namespace WindowsFormsApp2
         // memilih file dan menampilkan visualisasinya
         private void visualize_button_Click(object sender, EventArgs e)
         {
+            // check state
+            if (visualizeState == VisualizeState.Traverse || visualizeState == VisualizeState.ShowingResult)
+            {
+                MessageBox.Show("Wait for current process to finish");
+                return;
+            }
             // object OpenFileDialog
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
@@ -119,6 +132,10 @@ namespace WindowsFormsApp2
                     {
                         col.MinimumWidth = cellSize;
                     }
+
+                    ResetDGVColor();
+                    visualizeState = VisualizeState.Normal;
+                    RefreshVisualizeState();
                 }
                 catch (Exception ex)
                 {
@@ -131,36 +148,46 @@ namespace WindowsFormsApp2
 
             }
         }
-        private Thread StartVisualize(List<Pair<int, int>> searchPath, string directPath = "")
+        private Thread StartVisualize(List<(PathAction, Pair<int, int>)> searchPath)
         {
-            var visThread = new Thread(() => Visualize(searchPath, directPath));
+            var visThread = new Thread(() => Visualize(searchPath));
             visThread.Start();
             return visThread;
         }
-        private void Visualize(List<Pair<int, int>> searchPath, string directPath = "")
+        private void Visualize(List<(PathAction, Pair<int, int>)> searchPath)
         {
             // visualize search path with trail
-            for (int i = 0; i < searchPath.Count; i++)
+            foreach (var itr in searchPath)
             {
-                var pos = searchPath[i];
-                var prevPos = i < 1 ? null : searchPath[i - 1];
-                var fivePrevPos = i < 5 ? null : searchPath[i - 5];
-                dataGridView1.Rows[pos.first].Cells[pos.second].Style.BackColor =
-                    GridColor.ColorList["SearchHead"];
-                if (prevPos != null)
+                switch(itr.Item1)
                 {
-                    dataGridView1.Rows[prevPos.first].Cells[prevPos.second].Style.BackColor =
-                        GridColor.ColorList["SearchTrailFive"];
-                }
-                if (fivePrevPos != null)
-                {
-                    dataGridView1.Rows[fivePrevPos.first].Cells[fivePrevPos.second].Style.BackColor =
-                        GridColor.ColorList["SearchTrailElse"];
+                    case PathAction.ProcessStart:
+                        dataGridView1.Rows[itr.Item2.first].Cells[itr.Item2.second].Style.BackColor =
+                            GridColor.ColorList["Processing"];
+                        break;
+                    case PathAction.ProcessFinish:
+                        dataGridView1.Rows[itr.Item2.first].Cells[itr.Item2.second].Style.BackColor =
+                            GridColor.ColorList["ProcessFinished"];
+                        break;
+                    case PathAction.Reset:
+                        ResetDGVColor();
+                        break;
                 }
                 Thread.CurrentThread.Join(waitTime);
             }
 
-
+            visualizeState = VisualizeState.TraverseFinish;
+            this.Invoke(RefreshVisualizeState);
+        }
+        private Thread StartVisualizePath(string directPath)
+        {
+            var visThread = new Thread(() => VisualizePath(directPath));
+            visThread.Start();
+            return visThread;
+        }
+        private void VisualizePath(string directPath)
+        {
+            ResetDGVColor();
             Pair<int, int> position = inputUtils.startCoordinate;
             dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.ColorList["PathHead"];
             var prevColor = GridColor.ColorList["Default"];
@@ -189,13 +216,7 @@ namespace WindowsFormsApp2
             switch (visualizeState)
             {
                 case VisualizeState.Normal:
-                    dataGridView1.ReadOnly = false;
-                    break;
-                case VisualizeState.Running:
-                    dataGridView1.ReadOnly = true;
-                    break;
-                case VisualizeState.Finished:
-                    dataGridView1.ReadOnly = true;
+                    ResetDGVColor();
                     break;
             }
         }
@@ -207,49 +228,44 @@ namespace WindowsFormsApp2
                 {
                     case VisualizeState.Normal:
                         inputUtils = new InputUtils((DataTable)dataGridView1.DataSource);
+                        var watch = new Stopwatch();
+                        watch.Start();
                         if (dfsButton.Checked)
                         {
                             DFS dfs = new DFS(inputUtils);
-                            var watch = new Stopwatch();
-                            watch.Start();
-                            var result = dfs.Solve();
-                            watch.Stop();
-
-                            execution_time_ans_label.Text = watch.ElapsedMilliseconds + " ms";
-
-                            // TODO move visualize outside if to reduce redundancy
-
-                            visualizeState = VisualizeState.Running;
-                            RefreshVisualizeState();
-
-                            var visThread = StartVisualize(result.Item1, result.Item2);
+                            result = dfs.Solve();
                         }
                         else if (bfsButton.Checked)
                         {
                             BFS bfs = new BFS(inputUtils);
-                            var result = bfs.Solve();
-                            MessageBox.Show(result.Item2);
-                            MessageBox.Show("node visited : " + result.Item3);
-                            MessageBox.Show("steps : " + result.Item4);
+                            result = bfs.Solve();
                         }
                         else
                         {
                             throw new Exception("No button checked");
                         }
+                        watch.Stop();
+                        execution_time_ans_label.Text = watch.ElapsedMilliseconds + " ms";
+
+                        
+                        var visThread = StartVisualize(result.Item1);
+                        visualizeState = VisualizeState.Traverse;
+                        RefreshVisualizeState();
+
+
                         break;
-                    case VisualizeState.Running:
+                    case VisualizeState.Traverse:
+                        break;
+                    case VisualizeState.TraverseFinish:
+                        var visPathThread = StartVisualizePath(result.Item2);
+                        visualizeState = VisualizeState.ShowingResult;
+                        RefreshVisualizeState();
+                        break;
+                    case VisualizeState.ShowingResult:
                         break;
                     case VisualizeState.Finished:
                         visualizeState = VisualizeState.Normal;
                         RefreshVisualizeState();
-
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
-                        {
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                cell.Style.BackColor = GridColor.ColorList["Default"];
-                            }
-                        }
 
                         break;
                 }
@@ -259,6 +275,20 @@ namespace WindowsFormsApp2
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void ResetDGVColor()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && cell.Value.ToString() == "X") 
+                        cell.Style.BackColor = GridColor.ColorList["Obstacle"];
+                    else 
+                        cell.Style.BackColor = GridColor.ColorList["Default"];
+                }
+            }
         }
 
         private void SpeedBar_Scroll(object sender, EventArgs e)
