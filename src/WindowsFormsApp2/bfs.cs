@@ -21,7 +21,6 @@ namespace WindowsFormsApp2
         private bool[,,] canMove;
 
         private string[,] moveFrom;
-        private int found;
 
         public BFS(InputUtils inputUtils)
         {
@@ -112,7 +111,6 @@ namespace WindowsFormsApp2
         private void HardReset()
         {
             peta = (char[,])petaAwal.Clone();
-            found = 0;
         }
         private void SoftReset()
         {
