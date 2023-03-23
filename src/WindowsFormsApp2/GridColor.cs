@@ -13,6 +13,7 @@ namespace WindowsFormsApp2
         {
             {"Default", Color.FromArgb(0xED, 0xF1, 0xD6) },
             {"Obstacle", Color.Black },
+            {"KrustyKrab", Color.Aquamarine },
 
             {"SearchHead", Color.FromArgb(0x59, 0x5C, 0xFF) },
             {"SearchTrailFive", Color.FromArgb(0x90, 0xAA, 0xFF) },

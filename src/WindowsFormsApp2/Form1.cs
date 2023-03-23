@@ -50,6 +50,7 @@ namespace WindowsFormsApp2
         {
             inputUtils = null;
             visualizeState = VisualizeState.Normal;
+
             dataGridView1.DoubleBuffered(true);
             dataGridView1.ReadOnly = true;
 
@@ -159,7 +160,7 @@ namespace WindowsFormsApp2
             // visualize search path with trail
             foreach (var itr in searchPath)
             {
-                switch(itr.Item1)
+                switch (itr.Item1)
                 {
                     case PathAction.ProcessStart:
                         dataGridView1.Rows[itr.Item2.first].Cells[itr.Item2.second].Style.BackColor =
@@ -217,6 +218,19 @@ namespace WindowsFormsApp2
             {
                 case VisualizeState.Normal:
                     ResetDGVColor();
+                    algorithm_panel.Enabled = true;
+                    break;
+                case VisualizeState.Traverse:
+                    algorithm_panel.Enabled = false;
+                    break;
+                case VisualizeState.TraverseFinish:
+                    algorithm_panel.Enabled = false;
+                    break;
+                case VisualizeState.ShowingResult:
+                    algorithm_panel.Enabled = false;
+                    break;
+                case VisualizeState.Finished:
+                    algorithm_panel.Enabled = false;
                     break;
             }
         }
@@ -240,17 +254,31 @@ namespace WindowsFormsApp2
                             BFS bfs = new BFS(inputUtils);
                             result = bfs.Solve();
                         }
+                        else if (tspButton.Checked)
+                        {
+
+                        }
                         else
                         {
                             throw new Exception("No button checked");
                         }
                         watch.Stop();
                         execution_time_ans_label.Text = watch.ElapsedMilliseconds + " ms";
+                        nodes_ans_label.Text = result.Item3.ToString();
+                        steps_ans_label.Text = result.Item4.ToString();
 
-                        
-                        var visThread = StartVisualize(result.Item1);
-                        visualizeState = VisualizeState.Traverse;
-                        RefreshVisualizeState();
+                        if (dfsButton.Checked || bfsButton.Checked)
+                        {
+                            var visThread = StartVisualize(result.Item1);
+                            visualizeState = VisualizeState.Traverse;
+                            RefreshVisualizeState();
+                        }
+                        else if (tspButton.Checked)
+                        {
+                            StartVisualizePath(result.Item2);
+                            visualizeState = VisualizeState.ShowingResult;
+                            RefreshVisualizeState();
+                        }
 
 
                         break;
@@ -283,9 +311,11 @@ namespace WindowsFormsApp2
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (cell.Value != null && cell.Value.ToString() == "X") 
+                    if (cell.Value != null && cell.Value.ToString() == "X")
                         cell.Style.BackColor = GridColor.ColorList["Obstacle"];
-                    else 
+                    else if (cell.Value != null && cell.Value.ToString() == "K")
+                        cell.Style.BackColor = GridColor.ColorList["KrustyKrab"];
+                    else
                         cell.Style.BackColor = GridColor.ColorList["Default"];
                 }
             }
@@ -303,6 +333,11 @@ namespace WindowsFormsApp2
                 SpeedLabel.Text = ((float)(1 + SpeedBar.Value) / 5) + "/second";
                 waitTime = 5000 / (1 + SpeedBar.Value);
             }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridView1.ClearSelection();
         }
     }
 }

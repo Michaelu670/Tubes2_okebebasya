@@ -48,14 +48,17 @@
             dataGridView1 = new System.Windows.Forms.DataGridView();
             txt_label = new System.Windows.Forms.Label();
             bfsButton = new System.Windows.Forms.RadioButton();
-            dfsButton = new System.Windows.Forms.RadioButton();
             SpeedBar = new System.Windows.Forms.TrackBar();
             label1 = new System.Windows.Forms.Label();
             SpeedLabel = new System.Windows.Forms.Label();
+            algorithm_panel = new System.Windows.Forms.Panel();
+            tspButton = new System.Windows.Forms.RadioButton();
+            dfsButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SpeedBar).BeginInit();
+            algorithm_panel.SuspendLayout();
             SuspendLayout();
             // 
             // title_label
@@ -263,6 +266,7 @@
             dataGridView1.RowTemplate.Height = 24;
             dataGridView1.Size = new System.Drawing.Size(464, 290);
             dataGridView1.TabIndex = 20;
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // txt_label
             // 
@@ -281,7 +285,7 @@
             bfsButton.AutoSize = true;
             bfsButton.Checked = true;
             bfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            bfsButton.Location = new System.Drawing.Point(100, 329);
+            bfsButton.Location = new System.Drawing.Point(25, 3);
             bfsButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             bfsButton.Name = "bfsButton";
             bfsButton.Size = new System.Drawing.Size(73, 30);
@@ -290,23 +294,10 @@
             bfsButton.Text = "BFS";
             bfsButton.UseVisualStyleBackColor = true;
             // 
-            // dfsButton
-            // 
-            dfsButton.AutoSize = true;
-            dfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dfsButton.Location = new System.Drawing.Point(100, 358);
-            dfsButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            dfsButton.Name = "dfsButton";
-            dfsButton.Size = new System.Drawing.Size(74, 30);
-            dfsButton.TabIndex = 23;
-            dfsButton.TabStop = true;
-            dfsButton.Text = "DFS";
-            dfsButton.UseVisualStyleBackColor = true;
-            // 
             // SpeedBar
             // 
             SpeedBar.Location = new System.Drawing.Point(76, 472);
-            SpeedBar.Maximum = 50;
+            SpeedBar.Maximum = 250;
             SpeedBar.Name = "SpeedBar";
             SpeedBar.Size = new System.Drawing.Size(104, 45);
             SpeedBar.TabIndex = 24;
@@ -334,17 +325,53 @@
             SpeedLabel.TabIndex = 26;
             SpeedLabel.Text = "0.2/second";
             // 
+            // algorithm_panel
+            // 
+            algorithm_panel.AutoScroll = true;
+            algorithm_panel.Controls.Add(tspButton);
+            algorithm_panel.Controls.Add(bfsButton);
+            algorithm_panel.Controls.Add(dfsButton);
+            algorithm_panel.Location = new System.Drawing.Point(76, 329);
+            algorithm_panel.Name = "algorithm_panel";
+            algorithm_panel.Size = new System.Drawing.Size(200, 78);
+            algorithm_panel.TabIndex = 27;
+            // 
+            // tspButton
+            // 
+            tspButton.AutoSize = true;
+            tspButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            tspButton.Location = new System.Drawing.Point(25, 57);
+            tspButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tspButton.Name = "tspButton";
+            tspButton.Size = new System.Drawing.Size(72, 30);
+            tspButton.TabIndex = 24;
+            tspButton.TabStop = true;
+            tspButton.Text = "TSP";
+            tspButton.UseVisualStyleBackColor = true;
+            // 
+            // dfsButton
+            // 
+            dfsButton.AutoSize = true;
+            dfsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dfsButton.Location = new System.Drawing.Point(25, 30);
+            dfsButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            dfsButton.Name = "dfsButton";
+            dfsButton.Size = new System.Drawing.Size(74, 30);
+            dfsButton.TabIndex = 23;
+            dfsButton.TabStop = true;
+            dfsButton.Text = "DFS";
+            dfsButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.NavajoWhite;
             ClientSize = new System.Drawing.Size(943, 613);
+            Controls.Add(algorithm_panel);
             Controls.Add(SpeedLabel);
             Controls.Add(label1);
             Controls.Add(SpeedBar);
-            Controls.Add(dfsButton);
-            Controls.Add(bfsButton);
             Controls.Add(txt_label);
             Controls.Add(dataGridView1);
             Controls.Add(execution_time_ans_label);
@@ -373,6 +400,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)SpeedBar).EndInit();
+            algorithm_panel.ResumeLayout(false);
+            algorithm_panel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -399,10 +428,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label txt_label;
         private System.Windows.Forms.RadioButton bfsButton;
-        private System.Windows.Forms.RadioButton dfsButton;
         private System.Windows.Forms.TrackBar SpeedBar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label SpeedLabel;
+        private System.Windows.Forms.Panel algorithm_panel;
+        private System.Windows.Forms.RadioButton tspButton;
+        private System.Windows.Forms.RadioButton dfsButton;
     }
 }
 
