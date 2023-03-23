@@ -24,7 +24,7 @@ namespace WindowsFormsApp2
         private Pair<int, int>[,] pred;
 
         private int found;
-        private string directPath;
+        private StringBuilder directPath;
         private int nodeTraversed;
 
         public DFS(InputUtils inputUtils)
@@ -50,7 +50,7 @@ namespace WindowsFormsApp2
             nodeTraversed++;
 
             path.Add((PathAction.ProcessStart, pos));
-            directPath += prevDirection;
+            directPath.Append(prevDirection);
             var currentNodeNeeded = false;
 
             if (peta[pos.first, pos.second] == 'T')
@@ -67,7 +67,7 @@ namespace WindowsFormsApp2
             path.Add((PathAction.ProcessFinish, pos));
             if (found != treasuresCoordinate.Count) 
             { 
-                directPath += TraverseRule.reverseDirection[prevDirection]; 
+                directPath.Append(TraverseRule.reverseDirection[prevDirection]); 
             }
             return needed[pos.first, pos.second] = currentNodeNeeded;
         }
@@ -80,7 +80,7 @@ namespace WindowsFormsApp2
             traverse(startCoordinate, ref searchPath);
             var coordinate = new Pair<int, int>(startCoordinate.first, startCoordinate.second);
 
-            foreach (char c in directPath)
+            foreach (char c in directPath.ToString())
             {
                 bool prevNeed = needed[coordinate.first, coordinate.second];
                 coordinate += TraverseRule.moveDirection[c.ToString()];
@@ -97,7 +97,7 @@ namespace WindowsFormsApp2
             peta = (char[,])petaAwal.Clone();
             found = 0;
             nodeTraversed = 0;
-            directPath = "";
+            directPath = new StringBuilder();
             for (int i = 0; i < pred.GetLength(0); i++)
             {
                 for (int j = 0; j < pred.GetLength(1); j++)
