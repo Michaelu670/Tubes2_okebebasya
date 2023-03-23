@@ -164,11 +164,11 @@ namespace WindowsFormsApp2
                 {
                     case PathAction.ProcessStart:
                         dataGridView1.Rows[itr.Item2.first].Cells[itr.Item2.second].Style.BackColor =
-                            GridColor.ColorList["Processing"];
+                            GridColor.Processing;
                         break;
                     case PathAction.ProcessFinish:
                         dataGridView1.Rows[itr.Item2.first].Cells[itr.Item2.second].Style.BackColor =
-                            GridColor.ColorList["ProcessFinished"];
+                            GridColor.ProcessFinished;
                         break;
                     case PathAction.Reset:
                         ResetDGVColor();
@@ -190,8 +190,8 @@ namespace WindowsFormsApp2
         {
             ResetDGVColor();
             Pair<int, int> position = inputUtils.startCoordinate;
-            dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.ColorList["PathHead"];
-            var prevColor = GridColor.ColorList["Default"];
+            dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.PathHead;
+            var prevColor = GridColor.Default;
 
 
             foreach (char c in directPath)
@@ -202,7 +202,7 @@ namespace WindowsFormsApp2
                 position += TraverseRule.moveDirection[c.ToString()];
                 // record current color; then change it
                 prevColor = dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor;
-                dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.ColorList["PathHead"];
+                dataGridView1.Rows[position.first].Cells[position.second].Style.BackColor = GridColor.PathHead;
                 Thread.CurrentThread.Join(waitTime);
             }
             // change last grid color
@@ -312,11 +312,11 @@ namespace WindowsFormsApp2
                 foreach (DataGridViewCell cell in row.Cells)
                 {
                     if (cell.Value != null && cell.Value.ToString() == "X")
-                        cell.Style.BackColor = GridColor.ColorList["Obstacle"];
+                        cell.Style.BackColor = GridColor.Obstacle;
                     else if (cell.Value != null && cell.Value.ToString() == "K")
-                        cell.Style.BackColor = GridColor.ColorList["KrustyKrab"];
+                        cell.Style.BackColor = GridColor.KrustyKrab;
                     else
-                        cell.Style.BackColor = GridColor.ColorList["Default"];
+                        cell.Style.BackColor = GridColor.Default;
                 }
             }
         }

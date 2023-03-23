@@ -9,32 +9,26 @@ namespace WindowsFormsApp2
 {
     internal static class GridColor
     {
-        public static readonly Dictionary<string, Color> ColorList = new Dictionary<string, Color>()
-        {
-            {"Default", Color.FromArgb(0xED, 0xF1, 0xD6) },
-            {"Obstacle", Color.Black },
-            {"KrustyKrab", Color.Aquamarine },
+        public static readonly Color Default = Color.FromArgb(0xED, 0xF1, 0xD6);
+        public static readonly Color Obstacle = Color.Black;
+        public static readonly Color KrustyKrab = Color.Aquamarine;
 
-            {"SearchHead", Color.FromArgb(0x59, 0x5C, 0xFF) },
-            {"SearchTrailFive", Color.FromArgb(0x90, 0xAA, 0xFF) },
-            {"SearchTrailElse", Color.FromArgb(0xB4, 0xDE, 0xFF) },
+        public static readonly Color SearchHead = Color.FromArgb(0x59, 0x5C, 0xFF);
 
-            {"PathHead", Color.FromArgb(0x5C, 0xB2, 0x70) },
-            {"PathOnce", Color.FromArgb(0xE9, 0xD0, 0x22) },
-            {"PathTwice", Color.FromArgb(0xF4, 0xB7, 0x16) },
-            {"PathOften", Color.FromArgb(0xFF, 0x9D, 0x09) },
+        public static readonly Color PathHead  = Color.FromArgb(0x5C, 0xB2, 0x70);
+        public static readonly Color PathOnce  = Color.FromArgb(0xE9, 0xD0, 0x22);
+        public static readonly Color PathTwice = Color.FromArgb(0xF4, 0xB7, 0x16);
+        public static readonly Color PathOften = Color.FromArgb(0xFF, 0x9D, 0x09);
 
-            {"Processing", Color.Blue },
-            {"ProcessFinished", Color.Yellow }
-
-        };
+        public static readonly Color Processing = Color.Blue;
+        public static readonly Color ProcessFinished = Color.Yellow;
 
         public static readonly Dictionary<Color, Color> NextColorDict = new Dictionary<Color, Color>()
         {
-            {ColorList["Default"], ColorList["PathOnce"] },
-            {ColorList["PathOnce"], ColorList["PathTwice"] },
-            {ColorList["PathTwice"], ColorList["PathOften"] },
-            {ColorList["PathOften"], ColorList["PathOften"] }
+            {Default, PathOnce },
+            {PathOnce, PathTwice },
+            {PathTwice, PathOften },
+            {PathOften, PathOften }
         };
 
         public static Color NextColor(Color color)
@@ -43,7 +37,7 @@ namespace WindowsFormsApp2
             {
                 return NextColorDict[color];
             }
-            return ColorList["PathOnce"];
+            return PathOnce;
         }
     }
 
