@@ -1,37 +1,69 @@
 # Treasure Hunt Solver
 
-Simple overview of use/purpose.
+Program sederhana berbasis GUI(Guide User Interface) yang dapat menggunakan BFS dan DFS untuk mendapatkan rute memperoleh seluruh harta karun
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Program Treasure Hunt Solver mencari rute untuk memperoleh harta karun pada peta 2d \
+([contoh peta](test/tc%20spek.txt))
+* K menandakan titik awal
+* T menandakan harta karun
+* X menandakan grid halangan
+* R menandakan grid yang dapat diakses
+
+Program dapat mencari rute dengan:
+1. Breadth First Search (BFS)
+2. Depth First Search (DFS)
+
+Program juga dapat mencari solusi Travelling Salesman Problem dengan:
+1. Bruteforce
+2. Dynamic Programming
 
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* Windows 10/Windows 11
+* .NET Core 7
 
-### Installing
+### Build
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Clone this repository
+* Open cmd from root folder
+** Build only 
+```
+dotnet build src\WindowsFormsApp2
+```
+** Build and run
+```
+dotnet run --project src\WindowsFormsApp2
+```
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Open cmd from root folder and type
 ```
-code blocks for commands
+bin\net7.0-windows\WindowsFormsApp2.exe
 ```
 
-## Help
+## Misc
+### Warna visualisasi
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+Rute traversal divisualisasi dengan keterangan warna:
+* Kuning menandakan grid sudah selesai diproses
+* Biru menandakan grid sedang diproses
+
+Rute akhir ditampilkan dengan keterangan warna:
+* Kuning cerah menandakan grid dilewati sekali
+* Kuning agak gelap menandakan grid dilewati dua kali
+* Kuning lebih gelap menandakan grid dilewati tiga kali atau lebih
+
+### Prioritas Traversal
+
+Pada saat traversal, program selalu mencari path dengan prioritas:\
+Left, Right, Up, Down\
+[detail](src/WindowsFormsApp2/TraverseRule.cs)
+
 
 ## Authors
 
@@ -41,8 +73,6 @@ command to run if program contains helper info
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
 * [double buffering winforms](https://www.kodesiana.com/post/mengatasi-lag-datagridview-csharp/)
 * [color gradient generator](https://coolors.co/gradient-palette)
 
