@@ -24,9 +24,30 @@ namespace WindowsFormsApp2.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        internal static Image clipboard;
-        internal static Image ocean_beach;
-        internal static Image ocean_beach_II;
+        internal static Image clipboard
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("clipboard", resourceCulture);
+                return ((Image)(obj));
+            }
+        }
+        internal static Image ocean_beach
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ocean beach", resourceCulture);
+                return ((Image)(obj));
+            }
+        }
+        internal static Image ocean_beach_II
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ocean beach II", resourceCulture);
+                return ((Image)(obj));
+            }
+        }
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -35,7 +56,15 @@ namespace WindowsFormsApp2.Properties {
         internal Resources() {
         }
 
-        public static Image Treasure_Hunt_II { get; internal set; }
+        public static Image Treasure_Hunt_II
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Treasure Hunt II", resourceCulture);
+                return ((Image)(obj));
+            }
+        }
+        
 
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
