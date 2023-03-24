@@ -105,6 +105,10 @@ namespace WindowsFormsApp2
                         DataRow row = dt.NewRow();
                         for (int j = 0; j < values.Length; j++)
                         {
+                            if (values[j] == "R")
+                            {
+                                values[j] = "";
+                            }
                             row[j] = values[j];
                         }
 
@@ -247,7 +251,6 @@ namespace WindowsFormsApp2
                 switch (visualizeState)
                 {
                     case VisualizeState.Normal:
-                        inputUtils = new InputUtils((DataTable)dataGridView1.DataSource);
                         var watch = new Stopwatch();
                         watch.Start();
                         if (dfsButton.Checked)
