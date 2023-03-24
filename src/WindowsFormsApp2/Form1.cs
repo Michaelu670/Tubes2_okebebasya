@@ -361,5 +361,15 @@ namespace WindowsFormsApp2
                 "Route: " + routes_ans_label.Text
             }));
         }
+
+        private void output_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
