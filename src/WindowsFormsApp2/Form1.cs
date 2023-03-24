@@ -263,7 +263,7 @@ namespace WindowsFormsApp2
                         else if (tspButton.Checked)
                         {
                             TSP tsp = new TSP(inputUtils);
-                            result = tsp.Solve();
+                            result = tsp.DP();
                         }
                         else
                         {

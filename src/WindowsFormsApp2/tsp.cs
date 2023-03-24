@@ -32,7 +32,7 @@ namespace WindowsFormsApp2
             this.sizeX = inputUtils.matrix.GetLength(0);
             this.sizeY = inputUtils.matrix.GetLength(1);
         }
-        public (List<(PathAction, Pair<int, int>)>, string, int, int) Solve()
+        public (List<(PathAction, Pair<int, int>)>, string, int, int) Bruteforce()
         {
             // return value
             string path = "";
@@ -70,6 +70,73 @@ namespace WindowsFormsApp2
 
             List<(PathAction, Pair<int, int>)> stateChange = new List<(PathAction, Pair<int, int>)>(); // null for TSP
             path = (string)bestAnswerPath.Clone();
+            int nodeVisited = 0; // null for TSP
+            int steps = path.Length;
+            return (stateChange, path, nodeVisited, steps);
+        }
+        public (List<(PathAction, Pair<int, int>)>, string, int, int) DP()
+        {
+            // init
+            calculateShortestPath();
+            int banyakTreasure = treasuresCoordinateAwal.Count + 1;
+
+            // dp table n * 2^n
+            int n = banyakTreasure;
+            int start = banyakTreasure - 1;
+            int nmask = (1 << n);
+            int[,] dp = new int[n, nmask];
+            int[,] prev = new int[n, nmask];
+
+            const int infinity = int.MaxValue/4; // kalo maxvalue doang overflow, kalo long masalah casting
+            for(int i=0;i<n;i++){
+                for(int j=0;j<nmask;j++){
+                    dp[i, j] = infinity;
+                    prev[i, j] = -1;
+                }
+            }
+
+            dp[start, (1<<start)] = 0; // init base case
+
+            // iterate dp sub-problem
+            int mask, curr, next, last;
+            for(mask=1;mask<nmask;mask++){ // kita visit semua treasure yang masknya on
+                for(last=0;last<n;last++){ // misal di mask itu kita terakhir di last
+                    for(next=0;next<n;next++){ // misal kita mau jalan dari last ke next
+                        int new_mask = mask | (1 << next); // tandain next udah ke visit
+                        int newdist = dp[last, mask] + shortestPathMove[last, next]; // catet new dist kalo visit next
+                        if(newdist < dp[next, new_mask]){
+                            dp[next, new_mask] = newdist;
+                            prev[next, new_mask] = last;
+                        }
+                    }
+                }
+            }
+
+            int ans = infinity;
+            int last_treasure = -1;
+            for(last=0;last<n;last++){
+                if(last != start){
+                    int newans = dp[last, nmask - 1] + shortestPathMove[start, last];
+                    if(newans < ans){
+                        ans = newans;
+                        last_treasure = last;
+                    }
+                }
+            }
+
+            // backtracking path
+            string path = "";
+            mask = nmask - 1;
+            curr = last_treasure;
+            path += shortestPathString[start, curr];
+            while(curr != start){
+                next = prev[curr, mask];
+                path += shortestPathString[curr, next];
+                mask ^= (1 << curr); // unvisit yang sekarang
+                curr = next;
+            }
+
+            List<(PathAction, Pair<int, int>)> stateChange = new List<(PathAction, Pair<int, int>)>(); // null for TSP
             int nodeVisited = 0; // null for TSP
             int steps = path.Length;
             return (stateChange, path, nodeVisited, steps);
