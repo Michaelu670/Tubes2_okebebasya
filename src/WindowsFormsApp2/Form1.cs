@@ -50,6 +50,7 @@ namespace WindowsFormsApp2
         {
             inputUtils = null;
             visualizeState = VisualizeState.Normal;
+            RefreshVisualizeState();
 
             dataGridView1.DoubleBuffered(true);
             dataGridView1.ReadOnly = true;
@@ -219,18 +220,23 @@ namespace WindowsFormsApp2
                 case VisualizeState.Normal:
                     ResetDGVColor();
                     algorithm_panel.Enabled = true;
+                    copyButton.Enabled = false;
                     break;
                 case VisualizeState.Traverse:
                     algorithm_panel.Enabled = false;
+                    copyButton.Enabled = false;
                     break;
                 case VisualizeState.TraverseFinish:
                     algorithm_panel.Enabled = false;
+                    copyButton.Enabled = false;
                     break;
                 case VisualizeState.ShowingResult:
                     algorithm_panel.Enabled = false;
+                    copyButton.Enabled = false;
                     break;
                 case VisualizeState.Finished:
                     algorithm_panel.Enabled = false;
+                    copyButton.Enabled = true;
                     break;
             }
         }
@@ -283,6 +289,7 @@ namespace WindowsFormsApp2
                             visualizeState = VisualizeState.ShowingResult;
                             RefreshVisualizeState();
                         }
+
 
 
                         break;
@@ -342,6 +349,17 @@ namespace WindowsFormsApp2
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             dataGridView1.ClearSelection();
+        }
+
+        private void copyButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(String.Join("\n", new List<string>()
+            {
+                "Execution time: " + execution_time_ans_label.Text,
+                "Node visited: " + nodes_ans_label.Text,
+                "Steps: " + steps_ans_label.Text,
+                "Route: " + routes_ans_label.Text
+            }));
         }
     }
 }

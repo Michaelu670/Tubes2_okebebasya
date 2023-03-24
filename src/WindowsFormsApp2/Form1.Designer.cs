@@ -55,6 +55,7 @@
             tspButton = new System.Windows.Forms.RadioButton();
             dfsButton = new System.Windows.Forms.RadioButton();
             panel1 = new System.Windows.Forms.Panel();
+            copyButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -373,12 +374,23 @@
             panel1.Size = new System.Drawing.Size(118, 37);
             panel1.TabIndex = 28;
             // 
+            // copyButton
+            // 
+            copyButton.Location = new System.Drawing.Point(445, 531);
+            copyButton.Name = "copyButton";
+            copyButton.Size = new System.Drawing.Size(24, 23);
+            copyButton.TabIndex = 29;
+            copyButton.Text = "Copy";
+            copyButton.UseVisualStyleBackColor = true;
+            copyButton.Click += copyButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.NavajoWhite;
             ClientSize = new System.Drawing.Size(943, 613);
+            Controls.Add(copyButton);
             Controls.Add(panel1);
             Controls.Add(algorithm_panel);
             Controls.Add(SpeedLabel);
@@ -448,6 +460,7 @@
         private System.Windows.Forms.RadioButton tspButton;
         private System.Windows.Forms.RadioButton dfsButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button copyButton;
     }
 }
 
