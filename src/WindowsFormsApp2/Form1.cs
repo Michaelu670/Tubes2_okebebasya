@@ -263,6 +263,11 @@ namespace WindowsFormsApp2
                         else if (tspButton.Checked)
                         {
                             TSP tsp = new TSP(inputUtils);
+                            result = tsp.Bruteforce();
+                        }
+                        else if (dptspButton.Checked)
+                        {
+                            TSP tsp = new TSP(inputUtils);
                             result = tsp.DP();
                         }
                         else
@@ -283,7 +288,7 @@ namespace WindowsFormsApp2
                             visualizeState = VisualizeState.Traverse;
                             RefreshVisualizeState();
                         }
-                        else if (tspButton.Checked)
+                        else if (tspButton.Checked || dptspButton.Checked)
                         {
                             StartVisualizePath(result.Item2);
                             visualizeState = VisualizeState.ShowingResult;
