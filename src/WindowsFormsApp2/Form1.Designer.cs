@@ -52,11 +52,11 @@
             label1 = new System.Windows.Forms.Label();
             SpeedLabel = new System.Windows.Forms.Label();
             algorithm_panel = new System.Windows.Forms.Panel();
+            dptspButton = new System.Windows.Forms.RadioButton();
             tspButton = new System.Windows.Forms.RadioButton();
             dfsButton = new System.Windows.Forms.RadioButton();
             panel1 = new System.Windows.Forms.Panel();
             copyButton = new System.Windows.Forms.Button();
-            dptspButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -135,7 +135,7 @@
             visualize_button.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             visualize_button.ForeColor = System.Drawing.Color.SaddleBrown;
             visualize_button.Location = new System.Drawing.Point(24, 522);
-            visualize_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            visualize_button.Margin = new System.Windows.Forms.Padding(2);
             visualize_button.Name = "visualize_button";
             visualize_button.Size = new System.Drawing.Size(303, 37);
             visualize_button.TabIndex = 7;
@@ -151,7 +151,7 @@
             search_button.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             search_button.ForeColor = System.Drawing.Color.SaddleBrown;
             search_button.Location = new System.Drawing.Point(544, 480);
-            search_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            search_button.Margin = new System.Windows.Forms.Padding(2);
             search_button.Name = "search_button";
             search_button.Size = new System.Drawing.Size(163, 37);
             search_button.TabIndex = 8;
@@ -260,7 +260,7 @@
             pictureBox2.BackColor = System.Drawing.Color.Transparent;
             pictureBox2.Image = Properties.Resources.straight_black_thin_line_vertical;
             pictureBox2.Location = new System.Drawing.Point(-33, 123);
-            pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new System.Drawing.Size(793, 496);
             pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -272,7 +272,7 @@
             pictureBox1.BackColor = System.Drawing.Color.Transparent;
             pictureBox1.Image = Properties.Resources.straight_black_thin_line;
             pictureBox1.Location = new System.Drawing.Point(-54, -337);
-            pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(1003, 865);
             pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -285,7 +285,7 @@
             dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new System.Drawing.Point(390, 185);
-            dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 24;
@@ -367,8 +367,21 @@
             algorithm_panel.Controls.Add(dfsButton);
             algorithm_panel.Location = new System.Drawing.Point(76, 329);
             algorithm_panel.Name = "algorithm_panel";
-            algorithm_panel.Size = new System.Drawing.Size(200, 78);
+            algorithm_panel.Size = new System.Drawing.Size(251, 78);
             algorithm_panel.TabIndex = 27;
+            // 
+            // dptspButton
+            // 
+            dptspButton.AutoSize = true;
+            dptspButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.1999989F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dptspButton.Location = new System.Drawing.Point(24, 75);
+            dptspButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            dptspButton.Name = "dptspButton";
+            dptspButton.Size = new System.Drawing.Size(131, 30);
+            dptspButton.TabIndex = 25;
+            dptspButton.TabStop = true;
+            dptspButton.Text = "TSP (DP)";
+            dptspButton.UseVisualStyleBackColor = true;
             // 
             // tspButton
             // 
@@ -417,19 +430,6 @@
             copyButton.UseVisualStyleBackColor = true;
             copyButton.Click += copyButton_Click;
             // 
-            // dptspButton
-            // 
-            dptspButton.AutoSize = true;
-            dptspButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.1999989F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dptspButton.Location = new System.Drawing.Point(24, 75);
-            dptspButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            dptspButton.Name = "dptspButton";
-            dptspButton.Size = new System.Drawing.Size(131, 30);
-            dptspButton.TabIndex = 25;
-            dptspButton.TabStop = true;
-            dptspButton.Text = "TSP (DP)";
-            dptspButton.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -463,7 +463,7 @@
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            Margin = new System.Windows.Forms.Padding(2);
             Name = "Form1";
             Text = "Treasure Hunt Solver";
             Load += Form1_Load;
